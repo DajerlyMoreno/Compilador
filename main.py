@@ -63,8 +63,10 @@ def analizar_codigo(codigo):
 
 # Código de ejemplo (puedes reemplazarlo por lectura desde archivo si deseas)
 codigo = """
+c = m + 2;
 a = 5 + 3;
 b = a * 2;
+if a 
 """
 
 analizar_codigo(codigo)
