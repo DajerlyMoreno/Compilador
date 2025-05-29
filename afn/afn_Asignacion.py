@@ -24,6 +24,7 @@ afn_Asignacion = NFA(
         },
         'q3': {
             **{operador: {'q5'} for operador in operadores},
+            **{numero: {'q3'} for numero in digitos},
             ";": {'q11'},
         },
         'q4': {
@@ -73,40 +74,38 @@ def validar_asignacion(cadena):
     except Exception:
         return False
     
-def simular_automata(afn, cadena):
+def simular_automata(cadena):
+    afn = afn_Asignacion
     cadena = ''.join(c for c in cadena if not c.isspace())  # eliminar espacios
+    salida = ""
+
     estados_actuales = {afn.initial_state}
-    print(f"Estado inicial: {estados_actuales}")
+    salida += f"Estado inicial: {estados_actuales}\n"
 
     for i, simbolo in enumerate(cadena):
         nuevos_estados = set()
-        print(f"\nSímbolo '{simbolo}' (posición {i}):")
+        salida += f"\nSímbolo '{simbolo}' (posición {i}):\n"
 
         for estado in estados_actuales:
             transiciones = afn.transitions.get(estado, {})
             if simbolo in transiciones:
                 nuevos_estados.update(transiciones[simbolo])
-                print(f"  {estado} --{simbolo}--> {transiciones[simbolo]}")
+                salida += f"  {estado} --{simbolo}--> {transiciones[simbolo]}\n"
             else:
-                print(f"  {estado} --{simbolo}--> ❌ (no hay transición)")
+                salida += f"  {estado} --{simbolo}--> ❌ (no hay transición)\n"
 
         if not nuevos_estados:
-            print("\n❌ No hay transiciones válidas. Cadena rechazada.")
-            return False
+            salida += "\n❌ No hay transiciones válidas. Cadena rechazada.\n"
+            return salida
 
         estados_actuales = nuevos_estados
-        print(f"Estados actuales: {estados_actuales}")
+        salida += f"Estados actuales: {estados_actuales}\n"
 
     aceptado = bool(estados_actuales & afn.final_states)
     if aceptado:
-        print("\n✅ La cadena fue aceptada.")
+        salida += "\n✅ La cadena fue aceptada.\n"
     else:
-        print("\n❌ La cadena fue rechazada. Estados finales alcanzados:", estados_actuales)
-    return aceptado
+        salida += f"\n❌ La cadena fue rechazada. Estados finales alcanzados: {estados_actuales}\n"
 
-    
-print(validar_asignacion("a = 5"))  # True
-print(validar_asignacion("a = b + c"))  # True
-print(validar_asignacion("a = 5 + 2;"))  # True
+    return salida
 
-simular_automata(afn_Asignacion, "a = 5 + 2;")
