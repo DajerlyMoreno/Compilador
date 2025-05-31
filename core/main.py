@@ -1,7 +1,6 @@
 from octave_lexer import lexer
 from octave_parser import parser
 
-# Función para hacer el análisis semántico
 def analisis_semantico(arbol):
     print("\n=== ANÁLISIS SEMÁNTICO ===")
 

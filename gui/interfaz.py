@@ -1,64 +1,228 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import messagebox
 from afn.afn_Asignacion import validar_asignacion, simular_automata
-class inicio:
+from core.octave_lexer import lexer
+from core.octave_parser import parser, limpiar_mensajes, obtener_mensajes 
+from core.analisis_semantico import analisis_semantico, obtener, limpiar
+
+class InterfazAsignacion:
     def __init__(self, master):
         self.master = master
-        self.master.title("Interfaz de Usuario")
-        self.master.geometry("400x300")
-
-        self.label = tk.Label(master, text="Bienvenido")
-        self.label.pack(pady=20)
-
-        self.btnAsignacion = tk.Button(master, text="Asignación", command=self.asignacion)
-        self.btnAsignacion.pack(pady=10)
-        self.button = tk.Button(master, text="Salir", command=self.salir)
-        self.button.pack(pady=10)
-
-    def salir(self):
-        self.master.quit()  # Cierra la ventana principal
+        self.master.title("COMPILADOR")
+        self.master.geometry("900x500")
+        self.master.resizable(True, True)
+        
+        self.main_frame = tk.Frame(master)
+        self.main_frame.pack(fill="both", expand=True, padx=10, pady=10)
+        
+        self.main_frame.grid_columnconfigure(0, weight=1)  # Entrada
+        self.main_frame.grid_columnconfigure(1, weight=1)  # Botones  
+        self.main_frame.grid_columnconfigure(2, weight=2)  # Resultado
+        self.main_frame.grid_rowconfigure(0, weight=1)
+        
+        self.crear_seccion_entrada()
+        self.crear_seccion_botones()
+        self.crear_seccion_resultado()
     
-    def asignacion(self):
-        self.master.withdraw()  # Oculta la ventana principal
-        self.new_window = tk.Toplevel(self.master)
-        self.app = Asignacion(self.new_window)
-
-class Asignacion:
-    def __init__(self, master):
-        self.master = master
-        self.master.title("Validación de Asignación")
-        self.master.geometry("500x400")
-
-        self.label = tk.Label(master, text="Ingrese una asignación:")
-        self.label.pack(pady=10)
-
-        self.entry = tk.Entry(master)
-        self.entry.pack(pady=10)
-
-        self.btnValidar = tk.Button(master, text="Validar", command=self.validar_asignacion)
-        self.btnValidar.pack(pady=10)
-
-        # Frame para el Text y Scrollbar
-        self.text_frame = tk.Frame(master)
-        self.text_frame.pack(pady=10, fill="both", expand=True)
-
+    def crear_seccion_entrada(self):
+        self.frame_entrada = tk.Frame(self.main_frame, relief="ridge", bd=2)
+        self.frame_entrada.grid(row=0, column=0, sticky="nsew", padx=(0, 5))
+        
+        self.label_titulo_entrada = tk.Label(self.frame_entrada, text="ENTRADA", 
+                                           font=("Arial", 12, "bold"))
+        self.label_titulo_entrada.pack(pady=10)
+        
+        self.label_instruccion = tk.Label(self.frame_entrada, 
+                                        text="Ingrese una sentencia:")
+        self.label_instruccion.pack(pady=10)
+        
+        self.entrada_text_frame = tk.Frame(self.frame_entrada)
+        self.entrada_text_frame.pack(pady=10, padx=10, fill="both", expand=True)
+        
+        self.entrada_scrollbar = tk.Scrollbar(self.entrada_text_frame)
+        self.entrada_scrollbar.pack(side="right", fill="y")
+        
+        self.entry = tk.Text(self.entrada_text_frame, width=30, height=8, 
+                           font=("Arial", 10), wrap="word",
+                           yscrollcommand=self.entrada_scrollbar.set)
+        self.entry.pack(side="left", fill="both", expand=True)
+        
+        self.entrada_scrollbar.config(command=self.entry.yview)
+        
+        self.label_espacio = tk.Label(self.frame_entrada, text="")
+        self.label_espacio.pack(expand=True)
+    
+    def crear_seccion_botones(self):
+        self.frame_botones = tk.Frame(self.main_frame, relief="ridge", bd=2)
+        self.frame_botones.grid(row=0, column=1, sticky="nsew", padx=5)
+        
+        self.label_titulo_botones = tk.Label(self.frame_botones, text="TIPO", 
+                                           font=("Arial", 12, "bold"))
+        self.label_titulo_botones.pack(pady=10)
+        
+        self.container_botones = tk.Frame(self.frame_botones)
+        self.container_botones.pack(expand=True)
+        
+        # Botón ValidarAsignacion
+        self.btn_validar = tk.Button(self.container_botones, text="Asigacion", 
+                                   command=self.validar_asignacion,
+                                   width=12, height=2,
+                                   bg="#4CAF50", fg="white",
+                                   font=("Arial", 10, "bold"))
+        self.btn_validar.pack(pady=10)
+        
+        # Botón ValidarSentencia
+        self.btn_validar = tk.Button(self.container_botones, text="For", 
+                                   command=self.validaciones,
+                                   width=12, height=2,
+                                   bg="#4CAF50", fg="white",
+                                   font=("Arial", 10, "bold"))
+        self.btn_validar.pack(pady=10)
+        
+        # Botón Limpiar
+        self.btn_limpiar = tk.Button(self.container_botones, text="Limpiar", 
+                                   command=self.limpiar_campos,
+                                   width=12, height=2,
+                                   bg="#FF9800", fg="white",
+                                   font=("Arial", 10, "bold"))
+        self.btn_limpiar.pack(pady=10)
+        
+        # Botón Salir
+        self.btn_salir = tk.Button(self.container_botones, text="Salir", 
+                                 command=self.salir,
+                                 width=12, height=2,
+                                 bg="#F44336", fg="white",
+                                 font=("Arial", 10, "bold"))
+        self.btn_salir.pack(pady=10)
+    
+    def crear_seccion_resultado(self):
+        self.frame_resultado = tk.Frame(self.main_frame, relief="ridge", bd=2)
+        self.frame_resultado.grid(row=0, column=2, sticky="nsew", padx=(5, 0))
+        
+        self.label_titulo_resultado = tk.Label(self.frame_resultado, text="RESULTADO", 
+                                             font=("Arial", 12, "bold"))
+        self.label_titulo_resultado.pack(pady=10)
+        
+        self.text_frame = tk.Frame(self.frame_resultado)
+        self.text_frame.pack(pady=10, padx=10, fill="both", expand=True)
+        
         self.scrollbar = tk.Scrollbar(self.text_frame)
         self.scrollbar.pack(side="right", fill="y")
-
-        self.text_box = tk.Text(self.text_frame, wrap="word", yscrollcommand=self.scrollbar.set, height=10)
+        
+        self.text_box = tk.Text(self.text_frame, wrap="word", 
+                              yscrollcommand=self.scrollbar.set,
+                              font=("Courier", 10),
+                              bg="#f5f5f5")
         self.text_box.pack(side="left", fill="both", expand=True)
-
+        
         self.scrollbar.config(command=self.text_box.yview)
-
+        
+        self.text_box.insert(tk.END, "Ingrese una asignación y seleccione el tipo de sentencia para ver el resultado.\n\n")
+        self.text_box.config(state="disabled") 
+    
     def validar_asignacion(self):
-        cadena = self.entry.get()
-        resultado = simular_automata(cadena)
+        cadena = self.entry.get("1.0", tk.END).strip()
+        
+        if not cadena:
+            messagebox.showwarning("Advertencia", "Por favor ingrese una asignación")
+            return
+        
+        try:
+            self.text_box.config(state="normal")
+            
+            self.text_box.delete("1.0", tk.END)
+            
+            self.text_box.insert(tk.END, f"Validando:\n{cadena}\n")
+            self.text_box.insert(tk.END, "="*50 + "\n\n")
+            
+            resultado = simular_automata(cadena)
+            self.text_box.insert(tk.END, resultado)
+            
+            es_valida = validar_asignacion(cadena)
+            
+            self.text_box.insert(tk.END, "\n" + "="*50 + "\n")
+            
+            if es_valida:
+                self.text_box.insert(tk.END, "✓ ASIGNACIÓN VÁLIDA", "valida")
+                self.text_box.tag_config("valida", foreground="green", font=("Arial", 12, "bold"))
+                
+            else:
+                self.text_box.insert(tk.END, "✗ ASIGNACIÓN INVÁLIDA", "invalida")
+                self.text_box.tag_config("invalida", foreground="red", font=("Arial", 12, "bold"))
+                
+            
+            self.text_box.config(state="disabled")
+            
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al validar la asignación: {str(e)}")
+            self.text_box.config(state="disabled")
+    
+    def validaciones(self):
+        cadena = self.entry.get("1.0", tk.END).strip()
+        
+        if not cadena:
+            messagebox.showwarning("Advertencia", "Por favor ingrese una sentencia")
+            return
+        
+        try:
+            self.text_box.config(state="normal")
+            
+            self.text_box.delete("1.0", tk.END)
+            
+            self.text_box.insert(tk.END, f"Validando:\n{cadena}\n")
+            self.text_box.insert(tk.END, "="*50 + "\n")
+            
+            self.text_box.insert(tk.END, "=== ANÁLISIS LÉXICO ===\n")
+            lexer.input(cadena)
+            for tok in lexer:
+                self.text_box.insert(tk.END, f"{tok.type}: {tok.value}\n")
+            
+            self.text_box.insert(tk.END, "\n=== ANÁLISIS SINTÁCTICO ===\n")
+            limpiar_mensajes()
+            resultado = parser.parse(cadena)
+            mensajes = obtener_mensajes()  
+            if mensajes:
+                for mensaje in mensajes:
+                    self.text_box.insert(tk.END, f"{mensaje}")
+            if resultado:
+                self.text_box.insert(tk.END, f"\n[SINTAXIS] Árbol sintáctico: {resultado}")
+                print("[SINTAXIS] Árbol sintáctico:", resultado)
+            
+            self.text_box.insert(tk.END, "\n\n=== ANÁLISIS SEMÁNTICO ===\n")
+            limpiar()
+            analisis_semantico(resultado)
+            mensajes_sm = obtener()  
+            if mensajes_sm:
+                for mensaje in mensajes_sm:
+                    self.text_box.insert(tk.END, f"{mensaje}\n")
+            
+            self.text_box.insert(tk.END, "\n" + "="*50 + "\n")
+            
+            hay_error = any("Error:" in mensaje for mensaje in mensajes_sm)
 
-        # Limpiar el contenido anterior del Text
+            if not hay_error:
+                self.text_box.insert(tk.END, "✓ SENTENCIA VÁLIDA", "valida")
+                self.text_box.tag_config("valida", foreground="green", font=("Arial", 12, "bold"))
+            else:
+                self.text_box.insert(tk.END, "✗ SENTENCIA INVÁLIDA", "invalida")
+                self.text_box.tag_config("invalida", foreground="red", font=("Arial", 12, "bold"))
+            
+            self.text_box.config(state="disabled")
+            
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al validar la sentencia: {str(e)}")
+            self.text_box.config(state="disabled")
+            
+    def limpiar_campos(self):
+        self.entry.delete("1.0", tk.END)
+        
+        self.text_box.config(state="normal")
         self.text_box.delete("1.0", tk.END)
-        self.text_box.insert(tk.END, resultado)
-
-        if validar_asignacion(cadena):
-            tk.messagebox.showinfo("Resultado", "Asignación válida")
-        else:
-            tk.messagebox.showerror("Resultado", "Asignación inválida")
+        self.text_box.insert(tk.END, "Ingrese una asignación y presione 'Validar' para ver el resultado.\n\n")
+        self.text_box.config(state="disabled")
+        self.entry.focus()
+    
+    def salir(self):
+        if messagebox.askquestion("Salir", "¿Está seguro que desea salir?") == "yes":
+            self.master.quit()

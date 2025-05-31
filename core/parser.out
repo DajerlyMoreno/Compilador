@@ -19,64 +19,67 @@ Rule 4     statement -> IF expression statement END
 Rule 5     statement -> FOR ID EQUALS expression DOSPUNTOS expression statement_list END
 Rule 6     statement -> WHILE expression statement_list END
 Rule 7     statement -> DISP LPAREN expression RPAREN SEMICOLON
-Rule 8     statement -> ID EQUALS expression SEMICOLON
-Rule 9     statement -> expression SEMICOLON
-Rule 10    expression -> expression PLUS expression
-Rule 11    expression -> expression MINUS expression
-Rule 12    expression -> expression TIMES expression
-Rule 13    expression -> expression DIVIDE expression
-Rule 14    expression -> expression GREATER expression
-Rule 15    expression -> expression LESS expression
-Rule 16    expression -> expression DOUBLE_EQUALS expression
-Rule 17    expression -> expression GREATER_EQUALS expression
-Rule 18    expression -> expression LESS_EQUALS expression
-Rule 19    expression -> expression AND expression
-Rule 20    expression -> expression OR expression
-Rule 21    expression -> expression DOSPUNTOS expression
-Rule 22    expression -> CADENA
-Rule 23    expression -> NOT expression
-Rule 24    expression -> LPAREN expression RPAREN
-Rule 25    expression -> NUMBER
-Rule 26    expression -> ID
+Rule 8     statement -> DISP LPAREN expression RPAREN
+Rule 9     statement -> ID EQUALS expression SEMICOLON
+Rule 10    statement -> ID EQUALS expression
+Rule 11    statement -> expression SEMICOLON
+Rule 12    statement -> expression
+Rule 13    expression -> expression PLUS expression
+Rule 14    expression -> expression MINUS expression
+Rule 15    expression -> expression TIMES expression
+Rule 16    expression -> expression DIVIDE expression
+Rule 17    expression -> expression GREATER expression
+Rule 18    expression -> expression LESS expression
+Rule 19    expression -> expression DOUBLE_EQUALS expression
+Rule 20    expression -> expression GREATER_EQUALS expression
+Rule 21    expression -> expression LESS_EQUALS expression
+Rule 22    expression -> expression AND expression
+Rule 23    expression -> expression OR expression
+Rule 24    expression -> expression DOSPUNTOS expression
+Rule 25    expression -> CADENA
+Rule 26    expression -> NOT expression
+Rule 27    expression -> LPAREN expression RPAREN
+Rule 28    expression -> NUMBER
+Rule 29    expression -> ID
 
 Terminals, with rules where they appear
 
-AND                  : 19
-CADENA               : 22
+AND                  : 22
+CADENA               : 25
 COMMA                : 
-DISP                 : 7
-DIVIDE               : 13
-DOSPUNTOS            : 5 21
-DOUBLE_EQUALS        : 16
+DISP                 : 7 8
+DIVIDE               : 16
+DOSPUNTOS            : 5 24
+DOUBLE_EQUALS        : 19
 DQUOTE               : 
 END                  : 4 5 6
-EQUALS               : 5 8
+EQUALS               : 5 9 10
 FALSE                : 
 FOR                  : 5
-GREATER              : 14
-GREATER_EQUALS       : 17
-ID                   : 5 8 26
+GREATER              : 17
+GREATER_EQUALS       : 20
+ID                   : 5 9 10 29
 IF                   : 4
-LESS                 : 15
-LESS_EQUALS          : 18
-LPAREN               : 7 24
-MINUS                : 11
-NOT                  : 23
+LESS                 : 18
+LESS_EQUALS          : 21
+LPAREN               : 7 8 27
+MINUS                : 14
+NOT                  : 26
 NULL                 : 
-NUMBER               : 25
-OR                   : 20
-PLUS                 : 10
-RPAREN               : 7 24
-SEMICOLON            : 7 8 9
+NUMBER               : 28
+OR                   : 23
+PLUS                 : 13
+RPAREN               : 7 8 27
+SEMICOLON            : 7 9 11
 SQUOTE               : 
-TIMES                : 12
+TIMES                : 15
 TRUE                 : 
 WHILE                : 6
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 4 5 5 6 7 8 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 23 24
+expression           : 4 5 5 6 7 8 9 10 11 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 26 27
 program              : 0
 statement            : 2 3 4
 statement_list       : 1 2 5 6
@@ -93,25 +96,28 @@ state 0
     (5) statement -> . FOR ID EQUALS expression DOSPUNTOS expression statement_list END
     (6) statement -> . WHILE expression statement_list END
     (7) statement -> . DISP LPAREN expression RPAREN SEMICOLON
-    (8) statement -> . ID EQUALS expression SEMICOLON
-    (9) statement -> . expression SEMICOLON
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (8) statement -> . DISP LPAREN expression RPAREN
+    (9) statement -> . ID EQUALS expression SEMICOLON
+    (10) statement -> . ID EQUALS expression
+    (11) statement -> . expression SEMICOLON
+    (12) statement -> . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     IF              shift and go to state 4
     FOR             shift and go to state 6
@@ -142,25 +148,28 @@ state 2
     (5) statement -> . FOR ID EQUALS expression DOSPUNTOS expression statement_list END
     (6) statement -> . WHILE expression statement_list END
     (7) statement -> . DISP LPAREN expression RPAREN SEMICOLON
-    (8) statement -> . ID EQUALS expression SEMICOLON
-    (9) statement -> . expression SEMICOLON
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (8) statement -> . DISP LPAREN expression RPAREN
+    (9) statement -> . ID EQUALS expression SEMICOLON
+    (10) statement -> . ID EQUALS expression
+    (11) statement -> . expression SEMICOLON
+    (12) statement -> . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     $end            reduce using rule 1 (program -> statement_list .)
     IF              shift and go to state 4
@@ -196,23 +205,23 @@ state 3
 state 4
 
     (4) statement -> IF . expression statement END
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -224,21 +233,33 @@ state 4
 
 state 5
 
-    (9) statement -> expression . SEMICOLON
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (11) statement -> expression . SEMICOLON
+    (12) statement -> expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
     SEMICOLON       shift and go to state 17
+    IF              reduce using rule 12 (statement -> expression .)
+    FOR             reduce using rule 12 (statement -> expression .)
+    WHILE           reduce using rule 12 (statement -> expression .)
+    DISP            reduce using rule 12 (statement -> expression .)
+    ID              reduce using rule 12 (statement -> expression .)
+    CADENA          reduce using rule 12 (statement -> expression .)
+    NOT             reduce using rule 12 (statement -> expression .)
+    LPAREN          reduce using rule 12 (statement -> expression .)
+    NUMBER          reduce using rule 12 (statement -> expression .)
+    $end            reduce using rule 12 (statement -> expression .)
+    END             reduce using rule 12 (statement -> expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -262,45 +283,57 @@ state 6
 
 state 7
 
-    (8) statement -> ID . EQUALS expression SEMICOLON
-    (26) expression -> ID .
+    (9) statement -> ID . EQUALS expression SEMICOLON
+    (10) statement -> ID . EQUALS expression
+    (29) expression -> ID .
 
     EQUALS          shift and go to state 31
-    SEMICOLON       reduce using rule 26 (expression -> ID .)
-    PLUS            reduce using rule 26 (expression -> ID .)
-    MINUS           reduce using rule 26 (expression -> ID .)
-    TIMES           reduce using rule 26 (expression -> ID .)
-    DIVIDE          reduce using rule 26 (expression -> ID .)
-    GREATER         reduce using rule 26 (expression -> ID .)
-    LESS            reduce using rule 26 (expression -> ID .)
-    DOUBLE_EQUALS   reduce using rule 26 (expression -> ID .)
-    GREATER_EQUALS  reduce using rule 26 (expression -> ID .)
-    LESS_EQUALS     reduce using rule 26 (expression -> ID .)
-    AND             reduce using rule 26 (expression -> ID .)
-    OR              reduce using rule 26 (expression -> ID .)
-    DOSPUNTOS       reduce using rule 26 (expression -> ID .)
+    SEMICOLON       reduce using rule 29 (expression -> ID .)
+    PLUS            reduce using rule 29 (expression -> ID .)
+    MINUS           reduce using rule 29 (expression -> ID .)
+    TIMES           reduce using rule 29 (expression -> ID .)
+    DIVIDE          reduce using rule 29 (expression -> ID .)
+    GREATER         reduce using rule 29 (expression -> ID .)
+    LESS            reduce using rule 29 (expression -> ID .)
+    DOUBLE_EQUALS   reduce using rule 29 (expression -> ID .)
+    GREATER_EQUALS  reduce using rule 29 (expression -> ID .)
+    LESS_EQUALS     reduce using rule 29 (expression -> ID .)
+    AND             reduce using rule 29 (expression -> ID .)
+    OR              reduce using rule 29 (expression -> ID .)
+    DOSPUNTOS       reduce using rule 29 (expression -> ID .)
+    IF              reduce using rule 29 (expression -> ID .)
+    FOR             reduce using rule 29 (expression -> ID .)
+    WHILE           reduce using rule 29 (expression -> ID .)
+    DISP            reduce using rule 29 (expression -> ID .)
+    ID              reduce using rule 29 (expression -> ID .)
+    CADENA          reduce using rule 29 (expression -> ID .)
+    NOT             reduce using rule 29 (expression -> ID .)
+    LPAREN          reduce using rule 29 (expression -> ID .)
+    NUMBER          reduce using rule 29 (expression -> ID .)
+    $end            reduce using rule 29 (expression -> ID .)
+    END             reduce using rule 29 (expression -> ID .)
 
 
 state 8
 
     (6) statement -> WHILE . expression statement_list END
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -313,30 +346,31 @@ state 8
 state 9
 
     (7) statement -> DISP . LPAREN expression RPAREN SEMICOLON
+    (8) statement -> DISP . LPAREN expression RPAREN
 
     LPAREN          shift and go to state 33
 
 
 state 10
 
-    (24) expression -> LPAREN . expression RPAREN
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (27) expression -> LPAREN . expression RPAREN
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -348,53 +382,55 @@ state 10
 
 state 11
 
-    (22) expression -> CADENA .
+    (25) expression -> CADENA .
 
-    SEMICOLON       reduce using rule 22 (expression -> CADENA .)
-    PLUS            reduce using rule 22 (expression -> CADENA .)
-    MINUS           reduce using rule 22 (expression -> CADENA .)
-    TIMES           reduce using rule 22 (expression -> CADENA .)
-    DIVIDE          reduce using rule 22 (expression -> CADENA .)
-    GREATER         reduce using rule 22 (expression -> CADENA .)
-    LESS            reduce using rule 22 (expression -> CADENA .)
-    DOUBLE_EQUALS   reduce using rule 22 (expression -> CADENA .)
-    GREATER_EQUALS  reduce using rule 22 (expression -> CADENA .)
-    LESS_EQUALS     reduce using rule 22 (expression -> CADENA .)
-    AND             reduce using rule 22 (expression -> CADENA .)
-    OR              reduce using rule 22 (expression -> CADENA .)
-    DOSPUNTOS       reduce using rule 22 (expression -> CADENA .)
-    IF              reduce using rule 22 (expression -> CADENA .)
-    FOR             reduce using rule 22 (expression -> CADENA .)
-    WHILE           reduce using rule 22 (expression -> CADENA .)
-    DISP            reduce using rule 22 (expression -> CADENA .)
-    ID              reduce using rule 22 (expression -> CADENA .)
-    CADENA          reduce using rule 22 (expression -> CADENA .)
-    NOT             reduce using rule 22 (expression -> CADENA .)
-    LPAREN          reduce using rule 22 (expression -> CADENA .)
-    NUMBER          reduce using rule 22 (expression -> CADENA .)
-    RPAREN          reduce using rule 22 (expression -> CADENA .)
+    SEMICOLON       reduce using rule 25 (expression -> CADENA .)
+    PLUS            reduce using rule 25 (expression -> CADENA .)
+    MINUS           reduce using rule 25 (expression -> CADENA .)
+    TIMES           reduce using rule 25 (expression -> CADENA .)
+    DIVIDE          reduce using rule 25 (expression -> CADENA .)
+    GREATER         reduce using rule 25 (expression -> CADENA .)
+    LESS            reduce using rule 25 (expression -> CADENA .)
+    DOUBLE_EQUALS   reduce using rule 25 (expression -> CADENA .)
+    GREATER_EQUALS  reduce using rule 25 (expression -> CADENA .)
+    LESS_EQUALS     reduce using rule 25 (expression -> CADENA .)
+    AND             reduce using rule 25 (expression -> CADENA .)
+    OR              reduce using rule 25 (expression -> CADENA .)
+    DOSPUNTOS       reduce using rule 25 (expression -> CADENA .)
+    IF              reduce using rule 25 (expression -> CADENA .)
+    FOR             reduce using rule 25 (expression -> CADENA .)
+    WHILE           reduce using rule 25 (expression -> CADENA .)
+    DISP            reduce using rule 25 (expression -> CADENA .)
+    ID              reduce using rule 25 (expression -> CADENA .)
+    CADENA          reduce using rule 25 (expression -> CADENA .)
+    NOT             reduce using rule 25 (expression -> CADENA .)
+    LPAREN          reduce using rule 25 (expression -> CADENA .)
+    NUMBER          reduce using rule 25 (expression -> CADENA .)
+    $end            reduce using rule 25 (expression -> CADENA .)
+    RPAREN          reduce using rule 25 (expression -> CADENA .)
+    END             reduce using rule 25 (expression -> CADENA .)
 
 
 state 12
 
-    (23) expression -> NOT . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (26) expression -> NOT . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -406,31 +442,33 @@ state 12
 
 state 13
 
-    (25) expression -> NUMBER .
+    (28) expression -> NUMBER .
 
-    SEMICOLON       reduce using rule 25 (expression -> NUMBER .)
-    PLUS            reduce using rule 25 (expression -> NUMBER .)
-    MINUS           reduce using rule 25 (expression -> NUMBER .)
-    TIMES           reduce using rule 25 (expression -> NUMBER .)
-    DIVIDE          reduce using rule 25 (expression -> NUMBER .)
-    GREATER         reduce using rule 25 (expression -> NUMBER .)
-    LESS            reduce using rule 25 (expression -> NUMBER .)
-    DOUBLE_EQUALS   reduce using rule 25 (expression -> NUMBER .)
-    GREATER_EQUALS  reduce using rule 25 (expression -> NUMBER .)
-    LESS_EQUALS     reduce using rule 25 (expression -> NUMBER .)
-    AND             reduce using rule 25 (expression -> NUMBER .)
-    OR              reduce using rule 25 (expression -> NUMBER .)
-    DOSPUNTOS       reduce using rule 25 (expression -> NUMBER .)
-    IF              reduce using rule 25 (expression -> NUMBER .)
-    FOR             reduce using rule 25 (expression -> NUMBER .)
-    WHILE           reduce using rule 25 (expression -> NUMBER .)
-    DISP            reduce using rule 25 (expression -> NUMBER .)
-    ID              reduce using rule 25 (expression -> NUMBER .)
-    CADENA          reduce using rule 25 (expression -> NUMBER .)
-    NOT             reduce using rule 25 (expression -> NUMBER .)
-    LPAREN          reduce using rule 25 (expression -> NUMBER .)
-    NUMBER          reduce using rule 25 (expression -> NUMBER .)
-    RPAREN          reduce using rule 25 (expression -> NUMBER .)
+    SEMICOLON       reduce using rule 28 (expression -> NUMBER .)
+    PLUS            reduce using rule 28 (expression -> NUMBER .)
+    MINUS           reduce using rule 28 (expression -> NUMBER .)
+    TIMES           reduce using rule 28 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 28 (expression -> NUMBER .)
+    GREATER         reduce using rule 28 (expression -> NUMBER .)
+    LESS            reduce using rule 28 (expression -> NUMBER .)
+    DOUBLE_EQUALS   reduce using rule 28 (expression -> NUMBER .)
+    GREATER_EQUALS  reduce using rule 28 (expression -> NUMBER .)
+    LESS_EQUALS     reduce using rule 28 (expression -> NUMBER .)
+    AND             reduce using rule 28 (expression -> NUMBER .)
+    OR              reduce using rule 28 (expression -> NUMBER .)
+    DOSPUNTOS       reduce using rule 28 (expression -> NUMBER .)
+    IF              reduce using rule 28 (expression -> NUMBER .)
+    FOR             reduce using rule 28 (expression -> NUMBER .)
+    WHILE           reduce using rule 28 (expression -> NUMBER .)
+    DISP            reduce using rule 28 (expression -> NUMBER .)
+    ID              reduce using rule 28 (expression -> NUMBER .)
+    CADENA          reduce using rule 28 (expression -> NUMBER .)
+    NOT             reduce using rule 28 (expression -> NUMBER .)
+    LPAREN          reduce using rule 28 (expression -> NUMBER .)
+    NUMBER          reduce using rule 28 (expression -> NUMBER .)
+    $end            reduce using rule 28 (expression -> NUMBER .)
+    RPAREN          reduce using rule 28 (expression -> NUMBER .)
+    END             reduce using rule 28 (expression -> NUMBER .)
 
 
 state 14
@@ -453,41 +491,44 @@ state 14
 state 15
 
     (4) statement -> IF expression . statement END
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
     (4) statement -> . IF expression statement END
     (5) statement -> . FOR ID EQUALS expression DOSPUNTOS expression statement_list END
     (6) statement -> . WHILE expression statement_list END
     (7) statement -> . DISP LPAREN expression RPAREN SEMICOLON
-    (8) statement -> . ID EQUALS expression SEMICOLON
-    (9) statement -> . expression SEMICOLON
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (8) statement -> . DISP LPAREN expression RPAREN
+    (9) statement -> . ID EQUALS expression SEMICOLON
+    (10) statement -> . ID EQUALS expression
+    (11) statement -> . expression SEMICOLON
+    (12) statement -> . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
@@ -516,70 +557,72 @@ state 15
 
 state 16
 
-    (26) expression -> ID .
+    (29) expression -> ID .
 
-    PLUS            reduce using rule 26 (expression -> ID .)
-    MINUS           reduce using rule 26 (expression -> ID .)
-    TIMES           reduce using rule 26 (expression -> ID .)
-    DIVIDE          reduce using rule 26 (expression -> ID .)
-    GREATER         reduce using rule 26 (expression -> ID .)
-    LESS            reduce using rule 26 (expression -> ID .)
-    DOUBLE_EQUALS   reduce using rule 26 (expression -> ID .)
-    GREATER_EQUALS  reduce using rule 26 (expression -> ID .)
-    LESS_EQUALS     reduce using rule 26 (expression -> ID .)
-    AND             reduce using rule 26 (expression -> ID .)
-    OR              reduce using rule 26 (expression -> ID .)
-    DOSPUNTOS       reduce using rule 26 (expression -> ID .)
-    IF              reduce using rule 26 (expression -> ID .)
-    FOR             reduce using rule 26 (expression -> ID .)
-    WHILE           reduce using rule 26 (expression -> ID .)
-    DISP            reduce using rule 26 (expression -> ID .)
-    ID              reduce using rule 26 (expression -> ID .)
-    CADENA          reduce using rule 26 (expression -> ID .)
-    NOT             reduce using rule 26 (expression -> ID .)
-    LPAREN          reduce using rule 26 (expression -> ID .)
-    NUMBER          reduce using rule 26 (expression -> ID .)
-    RPAREN          reduce using rule 26 (expression -> ID .)
-    SEMICOLON       reduce using rule 26 (expression -> ID .)
+    PLUS            reduce using rule 29 (expression -> ID .)
+    MINUS           reduce using rule 29 (expression -> ID .)
+    TIMES           reduce using rule 29 (expression -> ID .)
+    DIVIDE          reduce using rule 29 (expression -> ID .)
+    GREATER         reduce using rule 29 (expression -> ID .)
+    LESS            reduce using rule 29 (expression -> ID .)
+    DOUBLE_EQUALS   reduce using rule 29 (expression -> ID .)
+    GREATER_EQUALS  reduce using rule 29 (expression -> ID .)
+    LESS_EQUALS     reduce using rule 29 (expression -> ID .)
+    AND             reduce using rule 29 (expression -> ID .)
+    OR              reduce using rule 29 (expression -> ID .)
+    DOSPUNTOS       reduce using rule 29 (expression -> ID .)
+    IF              reduce using rule 29 (expression -> ID .)
+    FOR             reduce using rule 29 (expression -> ID .)
+    WHILE           reduce using rule 29 (expression -> ID .)
+    DISP            reduce using rule 29 (expression -> ID .)
+    ID              reduce using rule 29 (expression -> ID .)
+    CADENA          reduce using rule 29 (expression -> ID .)
+    NOT             reduce using rule 29 (expression -> ID .)
+    LPAREN          reduce using rule 29 (expression -> ID .)
+    NUMBER          reduce using rule 29 (expression -> ID .)
+    RPAREN          reduce using rule 29 (expression -> ID .)
+    SEMICOLON       reduce using rule 29 (expression -> ID .)
+    $end            reduce using rule 29 (expression -> ID .)
+    END             reduce using rule 29 (expression -> ID .)
 
 
 state 17
 
-    (9) statement -> expression SEMICOLON .
+    (11) statement -> expression SEMICOLON .
 
-    IF              reduce using rule 9 (statement -> expression SEMICOLON .)
-    FOR             reduce using rule 9 (statement -> expression SEMICOLON .)
-    WHILE           reduce using rule 9 (statement -> expression SEMICOLON .)
-    DISP            reduce using rule 9 (statement -> expression SEMICOLON .)
-    ID              reduce using rule 9 (statement -> expression SEMICOLON .)
-    CADENA          reduce using rule 9 (statement -> expression SEMICOLON .)
-    NOT             reduce using rule 9 (statement -> expression SEMICOLON .)
-    LPAREN          reduce using rule 9 (statement -> expression SEMICOLON .)
-    NUMBER          reduce using rule 9 (statement -> expression SEMICOLON .)
-    $end            reduce using rule 9 (statement -> expression SEMICOLON .)
-    END             reduce using rule 9 (statement -> expression SEMICOLON .)
+    IF              reduce using rule 11 (statement -> expression SEMICOLON .)
+    FOR             reduce using rule 11 (statement -> expression SEMICOLON .)
+    WHILE           reduce using rule 11 (statement -> expression SEMICOLON .)
+    DISP            reduce using rule 11 (statement -> expression SEMICOLON .)
+    ID              reduce using rule 11 (statement -> expression SEMICOLON .)
+    CADENA          reduce using rule 11 (statement -> expression SEMICOLON .)
+    NOT             reduce using rule 11 (statement -> expression SEMICOLON .)
+    LPAREN          reduce using rule 11 (statement -> expression SEMICOLON .)
+    NUMBER          reduce using rule 11 (statement -> expression SEMICOLON .)
+    $end            reduce using rule 11 (statement -> expression SEMICOLON .)
+    END             reduce using rule 11 (statement -> expression SEMICOLON .)
 
 
 state 18
 
-    (10) expression -> expression PLUS . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (13) expression -> expression PLUS . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -591,24 +634,24 @@ state 18
 
 state 19
 
-    (11) expression -> expression MINUS . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (14) expression -> expression MINUS . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -620,24 +663,24 @@ state 19
 
 state 20
 
-    (12) expression -> expression TIMES . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (15) expression -> expression TIMES . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -649,24 +692,24 @@ state 20
 
 state 21
 
-    (13) expression -> expression DIVIDE . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (16) expression -> expression DIVIDE . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -678,24 +721,24 @@ state 21
 
 state 22
 
-    (14) expression -> expression GREATER . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (17) expression -> expression GREATER . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -707,24 +750,24 @@ state 22
 
 state 23
 
-    (15) expression -> expression LESS . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (18) expression -> expression LESS . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -736,24 +779,24 @@ state 23
 
 state 24
 
-    (16) expression -> expression DOUBLE_EQUALS . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (19) expression -> expression DOUBLE_EQUALS . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -765,24 +808,24 @@ state 24
 
 state 25
 
-    (17) expression -> expression GREATER_EQUALS . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (20) expression -> expression GREATER_EQUALS . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -794,24 +837,24 @@ state 25
 
 state 26
 
-    (18) expression -> expression LESS_EQUALS . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (21) expression -> expression LESS_EQUALS . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -823,24 +866,24 @@ state 26
 
 state 27
 
-    (19) expression -> expression AND . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (22) expression -> expression AND . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -852,24 +895,24 @@ state 27
 
 state 28
 
-    (20) expression -> expression OR . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (23) expression -> expression OR . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -881,24 +924,24 @@ state 28
 
 state 29
 
-    (21) expression -> expression DOSPUNTOS . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (24) expression -> expression DOSPUNTOS . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -917,24 +960,25 @@ state 30
 
 state 31
 
-    (8) statement -> ID EQUALS . expression SEMICOLON
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (9) statement -> ID EQUALS . expression SEMICOLON
+    (10) statement -> ID EQUALS . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -947,43 +991,46 @@ state 31
 state 32
 
     (6) statement -> WHILE expression . statement_list END
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
     (2) statement_list -> . statement_list statement
     (3) statement_list -> . statement
     (4) statement -> . IF expression statement END
     (5) statement -> . FOR ID EQUALS expression DOSPUNTOS expression statement_list END
     (6) statement -> . WHILE expression statement_list END
     (7) statement -> . DISP LPAREN expression RPAREN SEMICOLON
-    (8) statement -> . ID EQUALS expression SEMICOLON
-    (9) statement -> . expression SEMICOLON
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (8) statement -> . DISP LPAREN expression RPAREN
+    (9) statement -> . ID EQUALS expression SEMICOLON
+    (10) statement -> . ID EQUALS expression
+    (11) statement -> . expression SEMICOLON
+    (12) statement -> . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
@@ -1014,23 +1061,24 @@ state 32
 state 33
 
     (7) statement -> DISP LPAREN . expression RPAREN SEMICOLON
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (8) statement -> DISP LPAREN . expression RPAREN
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -1042,19 +1090,19 @@ state 33
 
 state 34
 
-    (24) expression -> LPAREN expression . RPAREN
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (27) expression -> LPAREN expression . RPAREN
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
     RPAREN          shift and go to state 53
     PLUS            shift and go to state 18
@@ -1073,19 +1121,19 @@ state 34
 
 state 35
 
-    (23) expression -> NOT expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (26) expression -> NOT expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1099,17 +1147,19 @@ state 35
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 23 (expression -> NOT expression .)
-    IF              reduce using rule 23 (expression -> NOT expression .)
-    FOR             reduce using rule 23 (expression -> NOT expression .)
-    WHILE           reduce using rule 23 (expression -> NOT expression .)
-    DISP            reduce using rule 23 (expression -> NOT expression .)
-    ID              reduce using rule 23 (expression -> NOT expression .)
-    CADENA          reduce using rule 23 (expression -> NOT expression .)
-    NOT             reduce using rule 23 (expression -> NOT expression .)
-    LPAREN          reduce using rule 23 (expression -> NOT expression .)
-    NUMBER          reduce using rule 23 (expression -> NOT expression .)
-    RPAREN          reduce using rule 23 (expression -> NOT expression .)
+    SEMICOLON       reduce using rule 26 (expression -> NOT expression .)
+    IF              reduce using rule 26 (expression -> NOT expression .)
+    FOR             reduce using rule 26 (expression -> NOT expression .)
+    WHILE           reduce using rule 26 (expression -> NOT expression .)
+    DISP            reduce using rule 26 (expression -> NOT expression .)
+    ID              reduce using rule 26 (expression -> NOT expression .)
+    CADENA          reduce using rule 26 (expression -> NOT expression .)
+    NOT             reduce using rule 26 (expression -> NOT expression .)
+    LPAREN          reduce using rule 26 (expression -> NOT expression .)
+    NUMBER          reduce using rule 26 (expression -> NOT expression .)
+    $end            reduce using rule 26 (expression -> NOT expression .)
+    RPAREN          reduce using rule 26 (expression -> NOT expression .)
+    END             reduce using rule 26 (expression -> NOT expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1123,18 +1173,18 @@ state 35
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! MINUS           [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! TIMES           [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! DIVIDE          [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! GREATER         [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! LESS            [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! AND             [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! OR              [ reduce using rule 23 (expression -> NOT expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 23 (expression -> NOT expression .) ]
+  ! PLUS            [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! MINUS           [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! TIMES           [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! DIVIDE          [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! GREATER         [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! LESS            [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! AND             [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! OR              [ reduce using rule 26 (expression -> NOT expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 26 (expression -> NOT expression .) ]
 
 
 state 36
@@ -1146,19 +1196,19 @@ state 36
 
 state 37
 
-    (10) expression -> expression PLUS expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (13) expression -> expression PLUS expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1172,17 +1222,19 @@ state 37
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 10 (expression -> expression PLUS expression .)
-    IF              reduce using rule 10 (expression -> expression PLUS expression .)
-    FOR             reduce using rule 10 (expression -> expression PLUS expression .)
-    WHILE           reduce using rule 10 (expression -> expression PLUS expression .)
-    DISP            reduce using rule 10 (expression -> expression PLUS expression .)
-    ID              reduce using rule 10 (expression -> expression PLUS expression .)
-    CADENA          reduce using rule 10 (expression -> expression PLUS expression .)
-    NOT             reduce using rule 10 (expression -> expression PLUS expression .)
-    LPAREN          reduce using rule 10 (expression -> expression PLUS expression .)
-    NUMBER          reduce using rule 10 (expression -> expression PLUS expression .)
-    RPAREN          reduce using rule 10 (expression -> expression PLUS expression .)
+    SEMICOLON       reduce using rule 13 (expression -> expression PLUS expression .)
+    IF              reduce using rule 13 (expression -> expression PLUS expression .)
+    FOR             reduce using rule 13 (expression -> expression PLUS expression .)
+    WHILE           reduce using rule 13 (expression -> expression PLUS expression .)
+    DISP            reduce using rule 13 (expression -> expression PLUS expression .)
+    ID              reduce using rule 13 (expression -> expression PLUS expression .)
+    CADENA          reduce using rule 13 (expression -> expression PLUS expression .)
+    NOT             reduce using rule 13 (expression -> expression PLUS expression .)
+    LPAREN          reduce using rule 13 (expression -> expression PLUS expression .)
+    NUMBER          reduce using rule 13 (expression -> expression PLUS expression .)
+    $end            reduce using rule 13 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 13 (expression -> expression PLUS expression .)
+    END             reduce using rule 13 (expression -> expression PLUS expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1196,35 +1248,35 @@ state 37
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! MINUS           [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! TIMES           [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! DIVIDE          [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! GREATER         [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! LESS            [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! AND             [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! OR              [ reduce using rule 10 (expression -> expression PLUS expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 10 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! MINUS           [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! TIMES           [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! GREATER         [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! LESS            [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! AND             [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! OR              [ reduce using rule 13 (expression -> expression PLUS expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 13 (expression -> expression PLUS expression .) ]
 
 
 state 38
 
-    (11) expression -> expression MINUS expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (14) expression -> expression MINUS expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1238,17 +1290,19 @@ state 38
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 11 (expression -> expression MINUS expression .)
-    IF              reduce using rule 11 (expression -> expression MINUS expression .)
-    FOR             reduce using rule 11 (expression -> expression MINUS expression .)
-    WHILE           reduce using rule 11 (expression -> expression MINUS expression .)
-    DISP            reduce using rule 11 (expression -> expression MINUS expression .)
-    ID              reduce using rule 11 (expression -> expression MINUS expression .)
-    CADENA          reduce using rule 11 (expression -> expression MINUS expression .)
-    NOT             reduce using rule 11 (expression -> expression MINUS expression .)
-    LPAREN          reduce using rule 11 (expression -> expression MINUS expression .)
-    NUMBER          reduce using rule 11 (expression -> expression MINUS expression .)
-    RPAREN          reduce using rule 11 (expression -> expression MINUS expression .)
+    SEMICOLON       reduce using rule 14 (expression -> expression MINUS expression .)
+    IF              reduce using rule 14 (expression -> expression MINUS expression .)
+    FOR             reduce using rule 14 (expression -> expression MINUS expression .)
+    WHILE           reduce using rule 14 (expression -> expression MINUS expression .)
+    DISP            reduce using rule 14 (expression -> expression MINUS expression .)
+    ID              reduce using rule 14 (expression -> expression MINUS expression .)
+    CADENA          reduce using rule 14 (expression -> expression MINUS expression .)
+    NOT             reduce using rule 14 (expression -> expression MINUS expression .)
+    LPAREN          reduce using rule 14 (expression -> expression MINUS expression .)
+    NUMBER          reduce using rule 14 (expression -> expression MINUS expression .)
+    $end            reduce using rule 14 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 14 (expression -> expression MINUS expression .)
+    END             reduce using rule 14 (expression -> expression MINUS expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1262,35 +1316,35 @@ state 38
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! MINUS           [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! TIMES           [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! DIVIDE          [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! GREATER         [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! LESS            [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! AND             [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! OR              [ reduce using rule 11 (expression -> expression MINUS expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 11 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! MINUS           [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! TIMES           [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! GREATER         [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! LESS            [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! AND             [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! OR              [ reduce using rule 14 (expression -> expression MINUS expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 14 (expression -> expression MINUS expression .) ]
 
 
 state 39
 
-    (12) expression -> expression TIMES expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (15) expression -> expression TIMES expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1304,17 +1358,19 @@ state 39
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 12 (expression -> expression TIMES expression .)
-    IF              reduce using rule 12 (expression -> expression TIMES expression .)
-    FOR             reduce using rule 12 (expression -> expression TIMES expression .)
-    WHILE           reduce using rule 12 (expression -> expression TIMES expression .)
-    DISP            reduce using rule 12 (expression -> expression TIMES expression .)
-    ID              reduce using rule 12 (expression -> expression TIMES expression .)
-    CADENA          reduce using rule 12 (expression -> expression TIMES expression .)
-    NOT             reduce using rule 12 (expression -> expression TIMES expression .)
-    LPAREN          reduce using rule 12 (expression -> expression TIMES expression .)
-    NUMBER          reduce using rule 12 (expression -> expression TIMES expression .)
-    RPAREN          reduce using rule 12 (expression -> expression TIMES expression .)
+    SEMICOLON       reduce using rule 15 (expression -> expression TIMES expression .)
+    IF              reduce using rule 15 (expression -> expression TIMES expression .)
+    FOR             reduce using rule 15 (expression -> expression TIMES expression .)
+    WHILE           reduce using rule 15 (expression -> expression TIMES expression .)
+    DISP            reduce using rule 15 (expression -> expression TIMES expression .)
+    ID              reduce using rule 15 (expression -> expression TIMES expression .)
+    CADENA          reduce using rule 15 (expression -> expression TIMES expression .)
+    NOT             reduce using rule 15 (expression -> expression TIMES expression .)
+    LPAREN          reduce using rule 15 (expression -> expression TIMES expression .)
+    NUMBER          reduce using rule 15 (expression -> expression TIMES expression .)
+    $end            reduce using rule 15 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 15 (expression -> expression TIMES expression .)
+    END             reduce using rule 15 (expression -> expression TIMES expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1328,35 +1384,35 @@ state 39
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! MINUS           [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! TIMES           [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! DIVIDE          [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! GREATER         [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! LESS            [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! AND             [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! OR              [ reduce using rule 12 (expression -> expression TIMES expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 12 (expression -> expression TIMES expression .) ]
+  ! PLUS            [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! MINUS           [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! TIMES           [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! DIVIDE          [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! GREATER         [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! LESS            [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! AND             [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! OR              [ reduce using rule 15 (expression -> expression TIMES expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 15 (expression -> expression TIMES expression .) ]
 
 
 state 40
 
-    (13) expression -> expression DIVIDE expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (16) expression -> expression DIVIDE expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1370,17 +1426,19 @@ state 40
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 13 (expression -> expression DIVIDE expression .)
-    IF              reduce using rule 13 (expression -> expression DIVIDE expression .)
-    FOR             reduce using rule 13 (expression -> expression DIVIDE expression .)
-    WHILE           reduce using rule 13 (expression -> expression DIVIDE expression .)
-    DISP            reduce using rule 13 (expression -> expression DIVIDE expression .)
-    ID              reduce using rule 13 (expression -> expression DIVIDE expression .)
-    CADENA          reduce using rule 13 (expression -> expression DIVIDE expression .)
-    NOT             reduce using rule 13 (expression -> expression DIVIDE expression .)
-    LPAREN          reduce using rule 13 (expression -> expression DIVIDE expression .)
-    NUMBER          reduce using rule 13 (expression -> expression DIVIDE expression .)
-    RPAREN          reduce using rule 13 (expression -> expression DIVIDE expression .)
+    SEMICOLON       reduce using rule 16 (expression -> expression DIVIDE expression .)
+    IF              reduce using rule 16 (expression -> expression DIVIDE expression .)
+    FOR             reduce using rule 16 (expression -> expression DIVIDE expression .)
+    WHILE           reduce using rule 16 (expression -> expression DIVIDE expression .)
+    DISP            reduce using rule 16 (expression -> expression DIVIDE expression .)
+    ID              reduce using rule 16 (expression -> expression DIVIDE expression .)
+    CADENA          reduce using rule 16 (expression -> expression DIVIDE expression .)
+    NOT             reduce using rule 16 (expression -> expression DIVIDE expression .)
+    LPAREN          reduce using rule 16 (expression -> expression DIVIDE expression .)
+    NUMBER          reduce using rule 16 (expression -> expression DIVIDE expression .)
+    $end            reduce using rule 16 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 16 (expression -> expression DIVIDE expression .)
+    END             reduce using rule 16 (expression -> expression DIVIDE expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1394,35 +1452,35 @@ state 40
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! MINUS           [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! TIMES           [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! DIVIDE          [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! GREATER         [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! LESS            [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! AND             [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! OR              [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 13 (expression -> expression DIVIDE expression .) ]
+  ! PLUS            [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! MINUS           [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! TIMES           [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! DIVIDE          [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! GREATER         [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! LESS            [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! AND             [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! OR              [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 16 (expression -> expression DIVIDE expression .) ]
 
 
 state 41
 
-    (14) expression -> expression GREATER expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (17) expression -> expression GREATER expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1436,17 +1494,19 @@ state 41
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 14 (expression -> expression GREATER expression .)
-    IF              reduce using rule 14 (expression -> expression GREATER expression .)
-    FOR             reduce using rule 14 (expression -> expression GREATER expression .)
-    WHILE           reduce using rule 14 (expression -> expression GREATER expression .)
-    DISP            reduce using rule 14 (expression -> expression GREATER expression .)
-    ID              reduce using rule 14 (expression -> expression GREATER expression .)
-    CADENA          reduce using rule 14 (expression -> expression GREATER expression .)
-    NOT             reduce using rule 14 (expression -> expression GREATER expression .)
-    LPAREN          reduce using rule 14 (expression -> expression GREATER expression .)
-    NUMBER          reduce using rule 14 (expression -> expression GREATER expression .)
-    RPAREN          reduce using rule 14 (expression -> expression GREATER expression .)
+    SEMICOLON       reduce using rule 17 (expression -> expression GREATER expression .)
+    IF              reduce using rule 17 (expression -> expression GREATER expression .)
+    FOR             reduce using rule 17 (expression -> expression GREATER expression .)
+    WHILE           reduce using rule 17 (expression -> expression GREATER expression .)
+    DISP            reduce using rule 17 (expression -> expression GREATER expression .)
+    ID              reduce using rule 17 (expression -> expression GREATER expression .)
+    CADENA          reduce using rule 17 (expression -> expression GREATER expression .)
+    NOT             reduce using rule 17 (expression -> expression GREATER expression .)
+    LPAREN          reduce using rule 17 (expression -> expression GREATER expression .)
+    NUMBER          reduce using rule 17 (expression -> expression GREATER expression .)
+    $end            reduce using rule 17 (expression -> expression GREATER expression .)
+    RPAREN          reduce using rule 17 (expression -> expression GREATER expression .)
+    END             reduce using rule 17 (expression -> expression GREATER expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1460,35 +1520,35 @@ state 41
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! MINUS           [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! TIMES           [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! DIVIDE          [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! GREATER         [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! LESS            [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! AND             [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! OR              [ reduce using rule 14 (expression -> expression GREATER expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 14 (expression -> expression GREATER expression .) ]
+  ! PLUS            [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! MINUS           [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! TIMES           [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! DIVIDE          [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! GREATER         [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! LESS            [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! AND             [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! OR              [ reduce using rule 17 (expression -> expression GREATER expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 17 (expression -> expression GREATER expression .) ]
 
 
 state 42
 
-    (15) expression -> expression LESS expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (18) expression -> expression LESS expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1502,17 +1562,19 @@ state 42
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 15 (expression -> expression LESS expression .)
-    IF              reduce using rule 15 (expression -> expression LESS expression .)
-    FOR             reduce using rule 15 (expression -> expression LESS expression .)
-    WHILE           reduce using rule 15 (expression -> expression LESS expression .)
-    DISP            reduce using rule 15 (expression -> expression LESS expression .)
-    ID              reduce using rule 15 (expression -> expression LESS expression .)
-    CADENA          reduce using rule 15 (expression -> expression LESS expression .)
-    NOT             reduce using rule 15 (expression -> expression LESS expression .)
-    LPAREN          reduce using rule 15 (expression -> expression LESS expression .)
-    NUMBER          reduce using rule 15 (expression -> expression LESS expression .)
-    RPAREN          reduce using rule 15 (expression -> expression LESS expression .)
+    SEMICOLON       reduce using rule 18 (expression -> expression LESS expression .)
+    IF              reduce using rule 18 (expression -> expression LESS expression .)
+    FOR             reduce using rule 18 (expression -> expression LESS expression .)
+    WHILE           reduce using rule 18 (expression -> expression LESS expression .)
+    DISP            reduce using rule 18 (expression -> expression LESS expression .)
+    ID              reduce using rule 18 (expression -> expression LESS expression .)
+    CADENA          reduce using rule 18 (expression -> expression LESS expression .)
+    NOT             reduce using rule 18 (expression -> expression LESS expression .)
+    LPAREN          reduce using rule 18 (expression -> expression LESS expression .)
+    NUMBER          reduce using rule 18 (expression -> expression LESS expression .)
+    $end            reduce using rule 18 (expression -> expression LESS expression .)
+    RPAREN          reduce using rule 18 (expression -> expression LESS expression .)
+    END             reduce using rule 18 (expression -> expression LESS expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1526,35 +1588,35 @@ state 42
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! MINUS           [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! TIMES           [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! DIVIDE          [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! GREATER         [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! LESS            [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! AND             [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! OR              [ reduce using rule 15 (expression -> expression LESS expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 15 (expression -> expression LESS expression .) ]
+  ! PLUS            [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! MINUS           [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! TIMES           [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! DIVIDE          [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! GREATER         [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! LESS            [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! AND             [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! OR              [ reduce using rule 18 (expression -> expression LESS expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 18 (expression -> expression LESS expression .) ]
 
 
 state 43
 
-    (16) expression -> expression DOUBLE_EQUALS expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (19) expression -> expression DOUBLE_EQUALS expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1568,17 +1630,19 @@ state 43
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    IF              reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    FOR             reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    WHILE           reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    DISP            reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    ID              reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    CADENA          reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    NOT             reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    LPAREN          reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    NUMBER          reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
-    RPAREN          reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .)
+    SEMICOLON       reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    IF              reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    FOR             reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    WHILE           reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    DISP            reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    ID              reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    CADENA          reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    NOT             reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    LPAREN          reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    NUMBER          reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    $end            reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    RPAREN          reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
+    END             reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1592,35 +1656,35 @@ state 43
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! MINUS           [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! TIMES           [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! DIVIDE          [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! GREATER         [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! LESS            [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! AND             [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! OR              [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 16 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! PLUS            [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! MINUS           [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! TIMES           [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! DIVIDE          [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! GREATER         [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! LESS            [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! AND             [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! OR              [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 19 (expression -> expression DOUBLE_EQUALS expression .) ]
 
 
 state 44
 
-    (17) expression -> expression GREATER_EQUALS expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (20) expression -> expression GREATER_EQUALS expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1634,17 +1698,19 @@ state 44
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    IF              reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    FOR             reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    WHILE           reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    DISP            reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    ID              reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    CADENA          reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    NOT             reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    LPAREN          reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    NUMBER          reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
-    RPAREN          reduce using rule 17 (expression -> expression GREATER_EQUALS expression .)
+    SEMICOLON       reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    IF              reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    FOR             reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    WHILE           reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    DISP            reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    ID              reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    CADENA          reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    NOT             reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    LPAREN          reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    NUMBER          reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    $end            reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    RPAREN          reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
+    END             reduce using rule 20 (expression -> expression GREATER_EQUALS expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1658,35 +1724,35 @@ state 44
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! MINUS           [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! TIMES           [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! DIVIDE          [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! GREATER         [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! LESS            [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! AND             [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! OR              [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 17 (expression -> expression GREATER_EQUALS expression .) ]
+  ! PLUS            [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! MINUS           [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! TIMES           [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! DIVIDE          [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! GREATER         [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! LESS            [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! AND             [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! OR              [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 20 (expression -> expression GREATER_EQUALS expression .) ]
 
 
 state 45
 
-    (18) expression -> expression LESS_EQUALS expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (21) expression -> expression LESS_EQUALS expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1700,17 +1766,19 @@ state 45
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    IF              reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    FOR             reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    WHILE           reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    DISP            reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    ID              reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    CADENA          reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    NOT             reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    LPAREN          reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    NUMBER          reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
-    RPAREN          reduce using rule 18 (expression -> expression LESS_EQUALS expression .)
+    SEMICOLON       reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    IF              reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    FOR             reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    WHILE           reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    DISP            reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    ID              reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    CADENA          reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    NOT             reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    LPAREN          reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    NUMBER          reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    $end            reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    RPAREN          reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
+    END             reduce using rule 21 (expression -> expression LESS_EQUALS expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1724,35 +1792,35 @@ state 45
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! MINUS           [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! TIMES           [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! DIVIDE          [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! GREATER         [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! LESS            [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! AND             [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! OR              [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 18 (expression -> expression LESS_EQUALS expression .) ]
+  ! PLUS            [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! MINUS           [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! TIMES           [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! DIVIDE          [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! GREATER         [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! LESS            [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! AND             [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! OR              [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 21 (expression -> expression LESS_EQUALS expression .) ]
 
 
 state 46
 
-    (19) expression -> expression AND expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (22) expression -> expression AND expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1766,17 +1834,19 @@ state 46
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 19 (expression -> expression AND expression .)
-    IF              reduce using rule 19 (expression -> expression AND expression .)
-    FOR             reduce using rule 19 (expression -> expression AND expression .)
-    WHILE           reduce using rule 19 (expression -> expression AND expression .)
-    DISP            reduce using rule 19 (expression -> expression AND expression .)
-    ID              reduce using rule 19 (expression -> expression AND expression .)
-    CADENA          reduce using rule 19 (expression -> expression AND expression .)
-    NOT             reduce using rule 19 (expression -> expression AND expression .)
-    LPAREN          reduce using rule 19 (expression -> expression AND expression .)
-    NUMBER          reduce using rule 19 (expression -> expression AND expression .)
-    RPAREN          reduce using rule 19 (expression -> expression AND expression .)
+    SEMICOLON       reduce using rule 22 (expression -> expression AND expression .)
+    IF              reduce using rule 22 (expression -> expression AND expression .)
+    FOR             reduce using rule 22 (expression -> expression AND expression .)
+    WHILE           reduce using rule 22 (expression -> expression AND expression .)
+    DISP            reduce using rule 22 (expression -> expression AND expression .)
+    ID              reduce using rule 22 (expression -> expression AND expression .)
+    CADENA          reduce using rule 22 (expression -> expression AND expression .)
+    NOT             reduce using rule 22 (expression -> expression AND expression .)
+    LPAREN          reduce using rule 22 (expression -> expression AND expression .)
+    NUMBER          reduce using rule 22 (expression -> expression AND expression .)
+    $end            reduce using rule 22 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 22 (expression -> expression AND expression .)
+    END             reduce using rule 22 (expression -> expression AND expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1790,35 +1860,35 @@ state 46
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! MINUS           [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! TIMES           [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! DIVIDE          [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! GREATER         [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! LESS            [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! AND             [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! OR              [ reduce using rule 19 (expression -> expression AND expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 19 (expression -> expression AND expression .) ]
+  ! PLUS            [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! TIMES           [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! DIVIDE          [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! GREATER         [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! LESS            [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! AND             [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! OR              [ reduce using rule 22 (expression -> expression AND expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 22 (expression -> expression AND expression .) ]
 
 
 state 47
 
-    (20) expression -> expression OR expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (23) expression -> expression OR expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1832,17 +1902,19 @@ state 47
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 20 (expression -> expression OR expression .)
-    IF              reduce using rule 20 (expression -> expression OR expression .)
-    FOR             reduce using rule 20 (expression -> expression OR expression .)
-    WHILE           reduce using rule 20 (expression -> expression OR expression .)
-    DISP            reduce using rule 20 (expression -> expression OR expression .)
-    ID              reduce using rule 20 (expression -> expression OR expression .)
-    CADENA          reduce using rule 20 (expression -> expression OR expression .)
-    NOT             reduce using rule 20 (expression -> expression OR expression .)
-    LPAREN          reduce using rule 20 (expression -> expression OR expression .)
-    NUMBER          reduce using rule 20 (expression -> expression OR expression .)
-    RPAREN          reduce using rule 20 (expression -> expression OR expression .)
+    SEMICOLON       reduce using rule 23 (expression -> expression OR expression .)
+    IF              reduce using rule 23 (expression -> expression OR expression .)
+    FOR             reduce using rule 23 (expression -> expression OR expression .)
+    WHILE           reduce using rule 23 (expression -> expression OR expression .)
+    DISP            reduce using rule 23 (expression -> expression OR expression .)
+    ID              reduce using rule 23 (expression -> expression OR expression .)
+    CADENA          reduce using rule 23 (expression -> expression OR expression .)
+    NOT             reduce using rule 23 (expression -> expression OR expression .)
+    LPAREN          reduce using rule 23 (expression -> expression OR expression .)
+    NUMBER          reduce using rule 23 (expression -> expression OR expression .)
+    $end            reduce using rule 23 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 23 (expression -> expression OR expression .)
+    END             reduce using rule 23 (expression -> expression OR expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1856,35 +1928,35 @@ state 47
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! MINUS           [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! TIMES           [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! DIVIDE          [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! GREATER         [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! LESS            [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! AND             [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! OR              [ reduce using rule 20 (expression -> expression OR expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 20 (expression -> expression OR expression .) ]
+  ! PLUS            [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! TIMES           [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! DIVIDE          [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! GREATER         [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! LESS            [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! AND             [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! OR              [ reduce using rule 23 (expression -> expression OR expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 23 (expression -> expression OR expression .) ]
 
 
 state 48
 
-    (21) expression -> expression DOSPUNTOS expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (24) expression -> expression DOSPUNTOS expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1898,17 +1970,19 @@ state 48
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
   ! shift/reduce conflict for DOSPUNTOS resolved as shift
-    SEMICOLON       reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    IF              reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    FOR             reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    WHILE           reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    DISP            reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    ID              reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    CADENA          reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    NOT             reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    LPAREN          reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    NUMBER          reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
-    RPAREN          reduce using rule 21 (expression -> expression DOSPUNTOS expression .)
+    SEMICOLON       reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    IF              reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    FOR             reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    WHILE           reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    DISP            reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    ID              reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    CADENA          reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    NOT             reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    LPAREN          reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    NUMBER          reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    $end            reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    RPAREN          reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
+    END             reduce using rule 24 (expression -> expression DOSPUNTOS expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -1922,40 +1996,40 @@ state 48
     OR              shift and go to state 28
     DOSPUNTOS       shift and go to state 29
 
-  ! PLUS            [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! MINUS           [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! TIMES           [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! DIVIDE          [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! GREATER         [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! LESS            [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! AND             [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! OR              [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! DOSPUNTOS       [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
+  ! PLUS            [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! MINUS           [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! TIMES           [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! DIVIDE          [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! GREATER         [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! LESS            [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! AND             [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! OR              [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
 
 
 state 49
 
     (5) statement -> FOR ID EQUALS . expression DOSPUNTOS expression statement_list END
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -1967,21 +2041,33 @@ state 49
 
 state 50
 
-    (8) statement -> ID EQUALS expression . SEMICOLON
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (9) statement -> ID EQUALS expression . SEMICOLON
+    (10) statement -> ID EQUALS expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
     SEMICOLON       shift and go to state 56
+    IF              reduce using rule 10 (statement -> ID EQUALS expression .)
+    FOR             reduce using rule 10 (statement -> ID EQUALS expression .)
+    WHILE           reduce using rule 10 (statement -> ID EQUALS expression .)
+    DISP            reduce using rule 10 (statement -> ID EQUALS expression .)
+    ID              reduce using rule 10 (statement -> ID EQUALS expression .)
+    CADENA          reduce using rule 10 (statement -> ID EQUALS expression .)
+    NOT             reduce using rule 10 (statement -> ID EQUALS expression .)
+    LPAREN          reduce using rule 10 (statement -> ID EQUALS expression .)
+    NUMBER          reduce using rule 10 (statement -> ID EQUALS expression .)
+    $end            reduce using rule 10 (statement -> ID EQUALS expression .)
+    END             reduce using rule 10 (statement -> ID EQUALS expression .)
     PLUS            shift and go to state 18
     MINUS           shift and go to state 19
     TIMES           shift and go to state 20
@@ -2004,25 +2090,28 @@ state 51
     (5) statement -> . FOR ID EQUALS expression DOSPUNTOS expression statement_list END
     (6) statement -> . WHILE expression statement_list END
     (7) statement -> . DISP LPAREN expression RPAREN SEMICOLON
-    (8) statement -> . ID EQUALS expression SEMICOLON
-    (9) statement -> . expression SEMICOLON
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (8) statement -> . DISP LPAREN expression RPAREN
+    (9) statement -> . ID EQUALS expression SEMICOLON
+    (10) statement -> . ID EQUALS expression
+    (11) statement -> . expression SEMICOLON
+    (12) statement -> . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     END             shift and go to state 57
     IF              shift and go to state 4
@@ -2041,18 +2130,19 @@ state 51
 state 52
 
     (7) statement -> DISP LPAREN expression . RPAREN SEMICOLON
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (8) statement -> DISP LPAREN expression . RPAREN
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
     RPAREN          shift and go to state 58
     PLUS            shift and go to state 18
@@ -2071,31 +2161,33 @@ state 52
 
 state 53
 
-    (24) expression -> LPAREN expression RPAREN .
+    (27) expression -> LPAREN expression RPAREN .
 
-    SEMICOLON       reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    PLUS            reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    MINUS           reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    TIMES           reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    GREATER         reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    LESS            reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    DOUBLE_EQUALS   reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    GREATER_EQUALS  reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    LESS_EQUALS     reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    AND             reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    OR              reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    DOSPUNTOS       reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    IF              reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    FOR             reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    WHILE           reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    DISP            reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    ID              reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    CADENA          reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    NOT             reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    LPAREN          reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    NUMBER          reduce using rule 24 (expression -> LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 24 (expression -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    GREATER         reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    LESS            reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    DOUBLE_EQUALS   reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    GREATER_EQUALS  reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    LESS_EQUALS     reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    DOSPUNTOS       reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    IF              reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    FOR             reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    WHILE           reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    DISP            reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    ID              reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    CADENA          reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    NOT             reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    LPAREN          reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    NUMBER          reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 27 (expression -> LPAREN expression RPAREN .)
+    END             reduce using rule 27 (expression -> LPAREN expression RPAREN .)
 
 
 state 54
@@ -2118,18 +2210,18 @@ state 54
 state 55
 
     (5) statement -> FOR ID EQUALS expression . DOSPUNTOS expression statement_list END
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
 
     DOSPUNTOS       shift and go to state 59
     PLUS            shift and go to state 18
@@ -2147,19 +2239,19 @@ state 55
 
 state 56
 
-    (8) statement -> ID EQUALS expression SEMICOLON .
+    (9) statement -> ID EQUALS expression SEMICOLON .
 
-    IF              reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    FOR             reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    WHILE           reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    DISP            reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    ID              reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    CADENA          reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    NOT             reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    LPAREN          reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    NUMBER          reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    $end            reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
-    END             reduce using rule 8 (statement -> ID EQUALS expression SEMICOLON .)
+    IF              reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    FOR             reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    WHILE           reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    DISP            reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    ID              reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    CADENA          reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    NOT             reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    LPAREN          reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    NUMBER          reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    $end            reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
+    END             reduce using rule 9 (statement -> ID EQUALS expression SEMICOLON .)
 
 
 state 57
@@ -2182,31 +2274,43 @@ state 57
 state 58
 
     (7) statement -> DISP LPAREN expression RPAREN . SEMICOLON
+    (8) statement -> DISP LPAREN expression RPAREN .
 
     SEMICOLON       shift and go to state 60
+    IF              reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    FOR             reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    WHILE           reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    DISP            reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    ID              reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    CADENA          reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    NOT             reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    LPAREN          reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    NUMBER          reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    $end            reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
+    END             reduce using rule 8 (statement -> DISP LPAREN expression RPAREN .)
 
 
 state 59
 
     (5) statement -> FOR ID EQUALS expression DOSPUNTOS . expression statement_list END
-    (21) expression -> expression DOSPUNTOS . expression
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (24) expression -> expression DOSPUNTOS . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     CADENA          shift and go to state 11
     NOT             shift and go to state 12
@@ -2236,44 +2340,47 @@ state 60
 state 61
 
     (5) statement -> FOR ID EQUALS expression DOSPUNTOS expression . statement_list END
-    (21) expression -> expression DOSPUNTOS expression .
-    (10) expression -> expression . PLUS expression
-    (11) expression -> expression . MINUS expression
-    (12) expression -> expression . TIMES expression
-    (13) expression -> expression . DIVIDE expression
-    (14) expression -> expression . GREATER expression
-    (15) expression -> expression . LESS expression
-    (16) expression -> expression . DOUBLE_EQUALS expression
-    (17) expression -> expression . GREATER_EQUALS expression
-    (18) expression -> expression . LESS_EQUALS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . DOSPUNTOS expression
+    (24) expression -> expression DOSPUNTOS expression .
+    (13) expression -> expression . PLUS expression
+    (14) expression -> expression . MINUS expression
+    (15) expression -> expression . TIMES expression
+    (16) expression -> expression . DIVIDE expression
+    (17) expression -> expression . GREATER expression
+    (18) expression -> expression . LESS expression
+    (19) expression -> expression . DOUBLE_EQUALS expression
+    (20) expression -> expression . GREATER_EQUALS expression
+    (21) expression -> expression . LESS_EQUALS expression
+    (22) expression -> expression . AND expression
+    (23) expression -> expression . OR expression
+    (24) expression -> expression . DOSPUNTOS expression
     (2) statement_list -> . statement_list statement
     (3) statement_list -> . statement
     (4) statement -> . IF expression statement END
     (5) statement -> . FOR ID EQUALS expression DOSPUNTOS expression statement_list END
     (6) statement -> . WHILE expression statement_list END
     (7) statement -> . DISP LPAREN expression RPAREN SEMICOLON
-    (8) statement -> . ID EQUALS expression SEMICOLON
-    (9) statement -> . expression SEMICOLON
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (8) statement -> . DISP LPAREN expression RPAREN
+    (9) statement -> . ID EQUALS expression SEMICOLON
+    (10) statement -> . ID EQUALS expression
+    (11) statement -> . expression SEMICOLON
+    (12) statement -> . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -2309,18 +2416,18 @@ state 61
     LPAREN          shift and go to state 10
     NUMBER          shift and go to state 13
 
-  ! DOSPUNTOS       [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! PLUS            [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! MINUS           [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! TIMES           [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! DIVIDE          [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! GREATER         [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! LESS            [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! DOUBLE_EQUALS   [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! GREATER_EQUALS  [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! LESS_EQUALS     [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! AND             [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
-  ! OR              [ reduce using rule 21 (expression -> expression DOSPUNTOS expression .) ]
+  ! DOSPUNTOS       [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! PLUS            [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! MINUS           [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! TIMES           [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! DIVIDE          [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! GREATER         [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! LESS            [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! DOUBLE_EQUALS   [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! GREATER_EQUALS  [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! LESS_EQUALS     [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! AND             [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
+  ! OR              [ reduce using rule 24 (expression -> expression DOSPUNTOS expression .) ]
 
     expression                     shift and go to state 5
     statement_list                 shift and go to state 62
@@ -2334,25 +2441,28 @@ state 62
     (5) statement -> . FOR ID EQUALS expression DOSPUNTOS expression statement_list END
     (6) statement -> . WHILE expression statement_list END
     (7) statement -> . DISP LPAREN expression RPAREN SEMICOLON
-    (8) statement -> . ID EQUALS expression SEMICOLON
-    (9) statement -> . expression SEMICOLON
-    (10) expression -> . expression PLUS expression
-    (11) expression -> . expression MINUS expression
-    (12) expression -> . expression TIMES expression
-    (13) expression -> . expression DIVIDE expression
-    (14) expression -> . expression GREATER expression
-    (15) expression -> . expression LESS expression
-    (16) expression -> . expression DOUBLE_EQUALS expression
-    (17) expression -> . expression GREATER_EQUALS expression
-    (18) expression -> . expression LESS_EQUALS expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression DOSPUNTOS expression
-    (22) expression -> . CADENA
-    (23) expression -> . NOT expression
-    (24) expression -> . LPAREN expression RPAREN
-    (25) expression -> . NUMBER
-    (26) expression -> . ID
+    (8) statement -> . DISP LPAREN expression RPAREN
+    (9) statement -> . ID EQUALS expression SEMICOLON
+    (10) statement -> . ID EQUALS expression
+    (11) statement -> . expression SEMICOLON
+    (12) statement -> . expression
+    (13) expression -> . expression PLUS expression
+    (14) expression -> . expression MINUS expression
+    (15) expression -> . expression TIMES expression
+    (16) expression -> . expression DIVIDE expression
+    (17) expression -> . expression GREATER expression
+    (18) expression -> . expression LESS expression
+    (19) expression -> . expression DOUBLE_EQUALS expression
+    (20) expression -> . expression GREATER_EQUALS expression
+    (21) expression -> . expression LESS_EQUALS expression
+    (22) expression -> . expression AND expression
+    (23) expression -> . expression OR expression
+    (24) expression -> . expression DOSPUNTOS expression
+    (25) expression -> . CADENA
+    (26) expression -> . NOT expression
+    (27) expression -> . LPAREN expression RPAREN
+    (28) expression -> . NUMBER
+    (29) expression -> . ID
 
     END             shift and go to state 63
     IF              shift and go to state 4
