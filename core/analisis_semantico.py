@@ -37,7 +37,16 @@ def analisis_semantico(arbol):
                     recorrer(sentencia)
             elif cuerpo is not None:
                 recorrer(cuerpo)
-
+                
+        elif tipo == 'while_true':
+            cuerpo = nodo[1]
+            agregar("[SEMÁNTICA] Bucle 'while true' detectado, se ejecutará indefinidamente.")
+            if isinstance(cuerpo, list):
+                for sentencia in cuerpo:
+                    recorrer(sentencia)
+            elif cuerpo is not None:
+                recorrer(cuerpo)
+            
         elif tipo == 'for':
             var = nodo[1]
             inicio = nodo[2]
