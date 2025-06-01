@@ -8,7 +8,7 @@ tokens = [
     'SQUOTE', 'CADENA', 'DQUOTE',
     'AND', 'OR', 'NOT', 'LESS_EQUALS', 'GREATER_EQUALS',
     'DOUBLE_EQUALS',     
-    'END',          
+    'END', 'BREAK',         
     'DISP',             
     'COMMA', 'TRUE', 'FALSE', 'NULL'         
 ]
@@ -29,6 +29,7 @@ t_LESS    = r'<'
 t_SQUOTE  = r'\''
 t_DQUOTE  = r'"'
 t_END    = r'end'
+t_BREAK   = r'break'
 t_AND     = r'&&'
 t_OR      = r'\|\|'
 t_NOT     = r'!'

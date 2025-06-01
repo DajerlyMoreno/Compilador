@@ -20,11 +20,13 @@ def agregar_mensaje(mensaje):
 def obtener_mensajes():
     """Función para obtener todos los mensajes acumulados"""
     global mensajes_sintaxis
-    return '\n'.join(mensajes_sintaxis)
+    return mensajes_sintaxis
 
 def p_program(p):
     'program : statement_list'
-    if len(p) == 2:
+    if any("Error" in mensaje for mensaje in mensajes_sintaxis):
+        agregar_mensaje("[SINTAXIS] Programa analizado con errores")
+    elif len(p) == 2:
         p[0] = p[1]
         agregar_mensaje("[SINTAXIS] Programa analizado correctamente")
     else:
@@ -46,16 +48,27 @@ def p_statement_if(p):
 
 def p_statement_for(p):
     'statement : FOR ID EQUALS expression DOSPUNTOS expression statement_list END'
-    if len(p) == 8:
+    if len(p) == 9:
         p[0] = ('for', p[2], p[4], p[6], p[7])
         agregar_mensaje(f"[SINTAXIS] Sentencia for válida: {p[2]} desde {p[4]} hasta {p[6]}") 
     else:
+        print(len(p))
         agregar_mensaje(f"[SINTAXIS] Sentencia for incompleta")
 
 def p_statement_while(p):
-    'statement : WHILE expression statement_list END'
-    p[0] = ('while', p[2], p[3])
-    agregar_mensaje(f"[SINTAXIS] Sentencia while válida con condición: {p[2]}")
+    '''statement : WHILE expression statement_list END'''
+    print(len(p))
+    if len(p) == 5:
+        p[0] = ('while', p[2], p[3])
+        agregar_mensaje(f"[SINTAXIS] Sentencia while válida con condición: {p[2]}")
+    else:
+        print(len(p))
+        agregar_mensaje(f"[SINTAXIS] Sentencia while incompleta")
+
+def p_statement_while_true(p):
+    'statement : WHILE TRUE statement_list END'
+    p[0] = ('while_true', p[3])
+    agregar_mensaje("[SINTAXIS] Sentencia while válida con condición 'true'")
 
 def p_statement_disp(p):
     '''statement : DISP LPAREN expression RPAREN SEMICOLON
@@ -118,17 +131,11 @@ def p_expression_id(p):
     p[0] = ('id', p[1])
     return agregar_mensaje(f"[SINTAXIS] Identificador válido: {p[1]}")
 
-# Manejo de errores sintácticos
 def p_error(p):
     if p:
-        error_msg = f"[SINTAXIS] Error de sintaxis cerca de: '{p.value}'"
-        agregar_mensaje(error_msg)
-        return error_msg
+        agregar_mensaje(f"[SINTAXIS] Error de sintaxis en el token '{p.value}'")
     else:
-        error_msg = "[SINTAXIS] Error de sintaxis inesperado al final del archivo"
-        agregar_mensaje(error_msg)
-        return error_msg
+        agregar_mensaje("[SINTAXIS] Error de sintaxis: entrada incompleta o inesperada.")
 
-# Construcción del parser
 parser = yacc.yacc()
 

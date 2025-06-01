@@ -17,7 +17,7 @@ class InterfazAsignacion:
         self.main_frame.pack(fill="both", expand=True, padx=10, pady=10)
         
         self.main_frame.grid_columnconfigure(0, weight=1)  # Entrada
-        self.main_frame.grid_columnconfigure(1, weight=1)  # Botones  
+        self.main_frame.grid_columnconfigure(1, weight=0)  # Botones  
         self.main_frame.grid_columnconfigure(2, weight=2)  # Resultado
         self.main_frame.grid_rowconfigure(0, weight=1)
         
@@ -54,8 +54,9 @@ class InterfazAsignacion:
         self.label_espacio.pack(expand=True)
     
     def crear_seccion_botones(self):
-        self.frame_botones = tk.Frame(self.main_frame, relief="ridge", bd=2)
+        self.frame_botones = tk.Frame(self.main_frame, relief="ridge", bd=2)  
         self.frame_botones.grid(row=0, column=1, sticky="nsew", padx=5)
+        self.frame_botones.grid_propagate(False)  
         
         self.label_titulo_botones = tk.Label(self.frame_botones, text="TIPO", 
                                            font=("Arial", 12, "bold"))
@@ -72,12 +73,20 @@ class InterfazAsignacion:
                                    font=("Arial", 10, "bold"))
         self.btn_validar.pack(pady=10)
         
-        # Botón ValidarSentencia
+        # Botón ValidarFor
         self.btn_validar = tk.Button(self.container_botones, text="For", 
-                                   command=self.validaciones,
                                    width=12, height=2,
                                    bg="#4CAF50", fg="white",
                                    font=("Arial", 10, "bold"))
+        self.btn_validar.config(command=lambda btn=self.btn_validar: self.validaciones(btn["text"]))
+        self.btn_validar.pack(pady=10)
+        
+        # Botón ValidarWhile
+        self.btn_validar = tk.Button(self.container_botones, text="While", 
+                                   width=12, height=2,
+                                   bg="#4CAF50", fg="white",
+                                   font=("Arial", 10, "bold"))
+        self.btn_validar.config(command=lambda btn=self.btn_validar: self.validaciones(btn["text"]))
         self.btn_validar.pack(pady=10)
         
         # Botón Limpiar
@@ -158,12 +167,25 @@ class InterfazAsignacion:
             messagebox.showerror("Error", f"Error al validar la asignación: {str(e)}")
             self.text_box.config(state="disabled")
     
-    def validaciones(self):
+    def validaciones(self, tipo):
         cadena = self.entry.get("1.0", tk.END).strip()
         
         if not cadena:
             messagebox.showwarning("Advertencia", "Por favor ingrese una sentencia")
             return
+        if tipo == "For":
+            hay_for = any("for" in pal for pal in cadena.split())
+            
+            if not hay_for:
+                messagebox.showwarning("Advertencia", "La sentencia debe contener un 'for'")
+                return
+            
+        elif tipo == "While":
+            hay_while = any("while" in pal for pal in cadena.split())
+            
+            if not hay_while:
+                messagebox.showwarning("Advertencia", "La sentencia debe contener un 'while'")
+                return
         
         try:
             self.text_box.config(state="normal")
@@ -184,24 +206,31 @@ class InterfazAsignacion:
             mensajes = obtener_mensajes()  
             if mensajes:
                 for mensaje in mensajes:
-                    self.text_box.insert(tk.END, f"{mensaje}")
-            if resultado:
-                self.text_box.insert(tk.END, f"\n[SINTAXIS] Árbol sintáctico: {resultado}")
-                print("[SINTAXIS] Árbol sintáctico:", resultado)
-            
-            self.text_box.insert(tk.END, "\n\n=== ANÁLISIS SEMÁNTICO ===\n")
-            limpiar()
-            analisis_semantico(resultado)
-            mensajes_sm = obtener()  
-            if mensajes_sm:
-                for mensaje in mensajes_sm:
                     self.text_box.insert(tk.END, f"{mensaje}\n")
             
-            self.text_box.insert(tk.END, "\n" + "="*50 + "\n")
+            error = any("Error" in mensaje for mensaje in mensajes)
+            mensajes_sm = [] 
+            if not error:
+                if resultado:
+                    self.text_box.insert(tk.END, f"\n[SINTAXIS] Árbol sintáctico: {resultado}")
+                self.text_box.insert(tk.END, "\n\n=== ANÁLISIS SEMÁNTICO ===\n")
+                limpiar()
+                analisis_semantico(resultado)
+                mensajes_sm = obtener()  
+                if mensajes_sm:
+                    for mensaje in mensajes_sm:
+                        self.text_box.insert(tk.END, f"{mensaje}\n")
+                
+                self.text_box.insert(tk.END, "\n" + "="*50 + "\n")
+            else:
+                self.text_box.insert(tk.END, "\n\n=== ANÁLISIS SEMÁNTICO ===\n")
+                self.text_box.insert(tk.END, "[SEMÁNTICA] Error: análisis semántico interrumpido por errores sintácticos.")
+                mensajes_sm.append("[SEMÁNTICA] Error: análisis semántico interrumpido por errores sintácticos.")
+                self.text_box.insert(tk.END, "\n" + "="*50 + "\n")
             
             hay_error = any("Error:" in mensaje for mensaje in mensajes_sm)
-
-            if not hay_error:
+            
+            if not hay_error and not error:
                 self.text_box.insert(tk.END, "✓ SENTENCIA VÁLIDA", "valida")
                 self.text_box.tag_config("valida", foreground="green", font=("Arial", 12, "bold"))
             else:
