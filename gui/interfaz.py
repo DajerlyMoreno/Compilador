@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 from afn.afn_Asignacion import validar_asignacion, simular_automata
+from afn.afn_if import validar_if_con_bloques_anidados, debug_tokenizacion  # Importar las funciones del AFN IF
 from core.octave_lexer import lexer
 from core.octave_parser import parser, limpiar_mensajes, obtener_mensajes 
 from core.analisis_semantico import analisis_semantico, obtener, limpiar
@@ -66,28 +67,36 @@ class InterfazAsignacion:
         self.container_botones.pack(expand=True)
         
         # Botón ValidarAsignacion
-        self.btn_validar = tk.Button(self.container_botones, text="Asigacion", 
+        self.btn_validar_asig = tk.Button(self.container_botones, text="Asigacion", 
                                    command=self.validar_asignacion,
                                    width=12, height=2,
                                    bg="#4CAF50", fg="white",
                                    font=("Arial", 10, "bold"))
-        self.btn_validar.pack(pady=10)
+        self.btn_validar_asig.pack(pady=5)
         
         # Botón ValidarFor
-        self.btn_validar = tk.Button(self.container_botones, text="For", 
+        self.btn_validar_for = tk.Button(self.container_botones, text="For", 
+                                   command=lambda: self.validaciones("For"),
                                    width=12, height=2,
                                    bg="#4CAF50", fg="white",
                                    font=("Arial", 10, "bold"))
-        self.btn_validar.config(command=lambda btn=self.btn_validar: self.validaciones(btn["text"]))
-        self.btn_validar.pack(pady=10)
+        self.btn_validar_for.pack(pady=5)
         
         # Botón ValidarWhile
-        self.btn_validar = tk.Button(self.container_botones, text="While", 
+        self.btn_validar_while = tk.Button(self.container_botones, text="While", 
+                                   command=lambda: self.validaciones("While"),
                                    width=12, height=2,
                                    bg="#4CAF50", fg="white",
                                    font=("Arial", 10, "bold"))
-        self.btn_validar.config(command=lambda btn=self.btn_validar: self.validaciones(btn["text"]))
-        self.btn_validar.pack(pady=10)
+        self.btn_validar_while.pack(pady=5)
+        
+        # Botón ValidarIf - NUEVO
+        self.btn_validar_if = tk.Button(self.container_botones, text="If", 
+                                   command=self.validar_if,
+                                   width=12, height=2,
+                                   bg="#2196F3", fg="white",
+                                   font=("Arial", 10, "bold"))
+        self.btn_validar_if.pack(pady=5)
         
         # Botón Limpiar
         self.btn_limpiar = tk.Button(self.container_botones, text="Limpiar", 
@@ -95,7 +104,7 @@ class InterfazAsignacion:
                                    width=12, height=2,
                                    bg="#FF9800", fg="white",
                                    font=("Arial", 10, "bold"))
-        self.btn_limpiar.pack(pady=10)
+        self.btn_limpiar.pack(pady=5)
         
         # Botón Salir
         self.btn_salir = tk.Button(self.container_botones, text="Salir", 
@@ -103,7 +112,7 @@ class InterfazAsignacion:
                                  width=12, height=2,
                                  bg="#F44336", fg="white",
                                  font=("Arial", 10, "bold"))
-        self.btn_salir.pack(pady=10)
+        self.btn_salir.pack(pady=5)
     
     def crear_seccion_resultado(self):
         self.frame_resultado = tk.Frame(self.main_frame, relief="ridge", bd=2)
@@ -127,7 +136,7 @@ class InterfazAsignacion:
         
         self.scrollbar.config(command=self.text_box.yview)
         
-        self.text_box.insert(tk.END, "Ingrese una asignación y seleccione el tipo de sentencia para ver el resultado.\n\n")
+        self.text_box.insert(tk.END, "Ingrese una sentencia y seleccione el tipo para ver el resultado.\n\n")
         self.text_box.config(state="disabled") 
     
     def validar_asignacion(self):
@@ -165,6 +174,62 @@ class InterfazAsignacion:
             
         except Exception as e:
             messagebox.showerror("Error", f"Error al validar la asignación: {str(e)}")
+            self.text_box.config(state="disabled")
+    
+    def validar_if(self):
+        """Nueva función para validar estructuras IF"""
+        cadena = self.entry.get("1.0", tk.END).strip()
+        
+        if not cadena:
+            messagebox.showwarning("Advertencia", "Por favor ingrese una estructura if")
+            return
+        
+        # Verificar que contenga un 'if'
+        hay_if = any("if" in palabra.lower() for palabra in cadena.split())
+        
+        if not hay_if:
+            messagebox.showwarning("Advertencia", "La sentencia debe contener un 'if'")
+            return
+        
+        try:
+            self.text_box.config(state="normal")
+            self.text_box.delete("1.0", tk.END)
+            
+            self.text_box.insert(tk.END, f"Validando estructura IF:\n{cadena}\n")
+            self.text_box.insert(tk.END, "="*60 + "\n\n")
+            
+            # Capturar la salida de la función de validación
+            import io
+            import sys
+            from contextlib import redirect_stdout
+            
+            # Crear un buffer para capturar la salida
+            salida_buffer = io.StringIO()
+            
+            # Redirigir stdout temporalmente
+            with redirect_stdout(salida_buffer):
+                es_valida = validar_if_con_bloques_anidados(cadena)
+            
+            # Obtener la salida capturada
+            salida_capturada = salida_buffer.getvalue()
+            
+            # Mostrar el análisis detallado
+            self.text_box.insert(tk.END, salida_capturada)
+            
+            # Mostrar el resultado final
+            self.text_box.insert(tk.END, "\n" + "="*60 + "\n")
+            
+            if es_valida:
+                self.text_box.insert(tk.END, "✓ ESTRUCTURA IF VÁLIDA", "valida")
+                self.text_box.tag_config("valida", foreground="green", font=("Arial", 12, "bold"))
+            else:
+                self.text_box.insert(tk.END, "✗ ESTRUCTURA IF INVÁLIDA", "invalida")
+                self.text_box.tag_config("invalida", foreground="red", font=("Arial", 12, "bold"))
+            
+            self.text_box.config(state="disabled")
+            
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al validar la estructura if: {str(e)}")
             self.text_box.config(state="disabled")
     
     def validaciones(self, tipo):
@@ -248,10 +313,16 @@ class InterfazAsignacion:
         
         self.text_box.config(state="normal")
         self.text_box.delete("1.0", tk.END)
-        self.text_box.insert(tk.END, "Ingrese una asignación y presione 'Validar' para ver el resultado.\n\n")
+        self.text_box.insert(tk.END, "Ingrese una sentencia y seleccione el tipo para ver el resultado.\n\n")
         self.text_box.config(state="disabled")
         self.entry.focus()
     
     def salir(self):
         if messagebox.askquestion("Salir", "¿Está seguro que desea salir?") == "yes":
             self.master.quit()
+
+# Para ejecutar la interfaz
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = InterfazAsignacion(root)
+    root.mainloop()
