@@ -8,6 +8,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'core'))
 from core.octave_lexer import lexer
 from core.octave_parser import parser, limpiar_mensajes as limpiar_parser, obtener_mensajes as obtener_parser
 from core.analisis_semantico import analisis_semantico, limpiar as limpiar_semantico, obtener as obtener_semantico
+from afn.afn_Asignacion import validar_asignacion
 
 class MealyTokenizer:
     def __init__(self):
@@ -398,7 +399,7 @@ def validar_if_con_bloques_anidados(codigo):
         estructura_tokens.extend(['if', '('])
         # Tokenizar la condición
         cond_tokens = tokenizar_simple(f"dummy ({condicion})")
-        estructura_tokens.extend(cond_tokens[2:-1])  # Excluir 'dummy', '(' y último ')'
+        estructura_tokens.extend(cond_tokens[2:-1])  
         estructura_tokens.extend([')', 'BLOQUE_VALIDO'])
     
     # Buscar elseif
@@ -456,7 +457,10 @@ def validar_if_con_bloques_anidados(codigo):
                 resultado_bloque = False
         else:
             # Para bloques simples, usar el parser de Octave
-            resultado_bloque = usar_octave_parser(codigo_bloque)
+            resultado_bloque = validar_asignacion(codigo_bloque)
+            if not resultado_bloque:
+                print("No es una asignación")
+                resultado_bloque = usar_octave_parser(codigo_bloque)
         
         if not resultado_bloque:
             print(f"❌ Bloque {i+1} inválido")
